@@ -1,19 +1,6 @@
 import re
 import docx
 
-"""
-doc = docx.Document("learning_agreement.docx")
-
-all_paras = doc.paragraphs
-
-for paragraph in doc.paragraphs: 
-    if "{student_first_name}" in paragraph.text: 
-        print (paragraph.text) 
-        paragraph.text = 'Matej' 
-
-doc.save("new_learning_agreement.docx")
-
-"""
 
 def docx_replace_regex(doc_obj, regex , replace): 
  
@@ -25,12 +12,12 @@ def docx_replace_regex(doc_obj, regex , replace):
                 if regex.search(inline[i].text): 
                     text = regex.sub(replace, inline[i].text) 
                     inline[i].text = text
-""" 
+ 
     for table in doc_obj.tables: 
         for row in table.rows: 
             for cell in row.cells: 
                 docx_replace_regex(cell, regex , replace) 
-"""
+
 regex1 = re.compile(r"{student_first_name}") 
 replace1 = "Matej"
 
