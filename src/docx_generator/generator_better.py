@@ -15,21 +15,21 @@ student_last_name_regex = re.compile("student_last_name")
 student_email_regex = re.compile("student_email")
 
 company = {
-	"name": "intercollege",
-	"address": "somewhere, 1"
+    "name": "intercollege",
+    "address": "somewhere, 1"
 }
 
 contact_person = {
-	"first_name": "Milos",
-	"last_name": "The goat",
-	"email": "milos@thegoat",
-	"phone_num": "123456789"
+    "first_name": "Milos",
+    "last_name": "The goat",
+    "email": "milos@thegoat",
+    "phone_num": "123456789"
 }
 
 student = {
-	"first_name": "Laur",
-	"last_name": "Bogdan",
-	"email": "laur@bogdan"
+    "first_name": "Laur",
+    "last_name": "Bogdan",
+    "email": "laur@bogdan"
 }
 
 
@@ -86,18 +86,38 @@ def paragraph_replace_text(paragraph, regex, replace_str):
     return paragraph
 
 
+
+def generate_learning_goals():
+    document = Document("learning_goals.docx")
+    for para in document.paragraphs:
+        paragraph_replace_text(para, company_name_regex, company["name"])
+        paragraph_replace_text(para, company_address_regex, company["address"])
+
+        paragraph_replace_text(para, cp_first_name_regex, contact_person["first_name"])
+        paragraph_replace_text(para, cp_last_name_regex, contact_person["last_name"])
+        paragraph_replace_text(para, cp_email_regex, contact_person["email"])
+        paragraph_replace_text(para, cp_phone_num_regex, contact_person["phone_num"])
+
+        paragraph_replace_text(para, student_first_name_regex, student["first_name"])
+        paragraph_replace_text(para, student_last_name_regex, student["last_name"])
+        paragraph_replace_text(para, student_email_regex, student["email"])
+    document.save("learning_agreement_new.docx")
+    return document
+
+"""
 if __name__ == "__main__":
-	document = Document("learning_agreement.docx")
-	for para in document.paragraphs:
-		paragraph_replace_text(para, company_name_regex, company["name"])
-		paragraph_replace_text(para, company_address_regex, company["address"])
+    document = Document("learning_agreement.docx")
+    for para in document.paragraphs:
+        paragraph_replace_text(para, company_name_regex, company["name"])
+        paragraph_replace_text(para, company_address_regex, company["address"])
 
-		paragraph_replace_text(para, cp_first_name_regex, contact_person["first_name"])
-		paragraph_replace_text(para, cp_last_name_regex, contact_person["last_name"])
-		paragraph_replace_text(para, cp_email_regex, contact_person["email"])
-		paragraph_replace_text(para, cp_phone_num_regex, contact_person["phone_num"])
+        paragraph_replace_text(para, cp_first_name_regex, contact_person["first_name"])
+        paragraph_replace_text(para, cp_last_name_regex, contact_person["last_name"])
+        paragraph_replace_text(para, cp_email_regex, contact_person["email"])
+        paragraph_replace_text(para, cp_phone_num_regex, contact_person["phone_num"])
 
-		paragraph_replace_text(para, student_first_name_regex, student["first_name"])
-		paragraph_replace_text(para, student_last_name_regex, student["last_name"])
-		paragraph_replace_text(para, student_email_regex, student["email"])
-	document.save("learning_agreement_new.docx")
+        paragraph_replace_text(para, student_first_name_regex, student["first_name"])
+        paragraph_replace_text(para, student_last_name_regex, student["last_name"])
+        paragraph_replace_text(para, student_email_regex, student["email"])
+    document.save("learning_agreement_new.docx")
+"""
