@@ -1,4 +1,5 @@
 import re
+import time
 
 from docx import Document
 
@@ -86,9 +87,8 @@ def paragraph_replace_text(paragraph, regex, replace_str):
     return paragraph
 
 
-
-def generate_learning_goals():
-    document = Document("learning_goals.docx")
+def generate_learning_goals(doc_path):
+    document = Document(doc_path)
     for para in document.paragraphs:
         paragraph_replace_text(para, company_name_regex, company["name"])
         paragraph_replace_text(para, company_address_regex, company["address"])
@@ -101,8 +101,16 @@ def generate_learning_goals():
         paragraph_replace_text(para, student_first_name_regex, student["first_name"])
         paragraph_replace_text(para, student_last_name_regex, student["last_name"])
         paragraph_replace_text(para, student_email_regex, student["email"])
-    document.save("learning_agreement_new.docx")
+    document.save("C:/Users/matko/Desktop/python_docx_generator/generated_docs/learning_agreement_new.docx")
     return document
+
+
+def async_example():
+    print("starting sleep")
+    time.sleep(5)
+    print("finished sleep")
+    return "slept for 5 sec"
+
 
 """
 if __name__ == "__main__":
